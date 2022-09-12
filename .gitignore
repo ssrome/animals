@@ -1,2 +1,4 @@
 /node_modules
 .next
+tests/videos
+tests/screenshots
