@@ -29,10 +29,10 @@ workflows:
             name: Build
             command: npm run build
     test:
-      - cypress/run:
-          start: npm run start-server
-          wait-on:
-            "http://localhost:3000"
+      steps:
+        - cypress/run:
+            start: npm run start-server
+            wait-on: "http://localhost:3000"
             # - deploy-via-git:
       #     filters:
       #       branches:
