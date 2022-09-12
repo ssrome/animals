@@ -4,31 +4,9 @@ orbs:
   node: circleci/node@5.0.2
   cypress: cypress-io/cypress@1
 
-jobs:
+workflows:
   build:
-    docker:
-      - image: cimg/node:16.14.2
-    steps:
-      - checkout
-      - restore_cache:
-          name: Restore npm package cache
-          key: v1-cache-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Install dependencies
-          command: npm install
-      - save_cache:
-          name: Save npm package cache
-          paths:
-            - node_modules
-          key: v1-cache-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Lint
-          command: npm run lint
-      - run:
-          name: Build
-          command: npm run build
-  test:
-    steps:
+    jobs:
       - cypress/run:
           start: npm run start-server
           wait-on:
