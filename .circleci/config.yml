@@ -8,7 +8,7 @@ workflows:
   build:
     jobs:
       - cypress/run:
-          start: npm run start-server
+          start: npm run start
           wait-on:
             "http://localhost:3000"
             # - deploy-via-git:
