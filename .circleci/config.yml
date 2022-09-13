@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.2
   cypress: cypress-io/cypress@1
+  jest: blimmer/jest@1.1.0
 
 workflows:
   build:
@@ -11,3 +12,4 @@ workflows:
           build: npm run build
           start: npm run start
           wait-on: "http://localhost:3000"
+      - jest/test
