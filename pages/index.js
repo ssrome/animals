@@ -1,3 +1,5 @@
+import Heading from "../src/components/Heading";
+
 function HomePage() {
   return (
     <>
