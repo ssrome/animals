@@ -10,8 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "e2e": "start-server-and-test start http://localhost:3000 cypress:run",
-    "jest": "jest"
+    "test:e2e": "start-server-and-test start http://localhost:3000 cypress:run",
+    "test:unit": "jest"
   },
   "devDependencies": {
     "cypress": "^10.7.0",
