@@ -1,5 +1,11 @@
+import Heading from "../src/components/Heading";
+
 function HomePage() {
-  return <div>Random Animals</div>;
+  return (
+    <div>
+      <Heading />
+    </div>
+  );
 }
 
 export default HomePage;
