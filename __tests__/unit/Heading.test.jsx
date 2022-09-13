@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import Heading from "../../src/components/Heading";
 
 describe("Heading component", () => {
-  test("loads the page heading", async () => {
+  it("loads the page heading", async () => {
     render(<Heading />);
     //const headingText = screen.getByText(/Random Animals/);
     const headingText = screen.getByRole("heading", {
