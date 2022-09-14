@@ -13,38 +13,43 @@ workflows:
         start: npm run start
         wait-on: "http://localhost:3000"
     - jest/test
-    - deploy_preview:
+    - deploy:
         requires:
           - cypress/run
           - jest/test
-        filters:
-          branches:
-            ignore:
-              - main
-    - deploy_production:
-        requires:
-          - cypress/run
-          - jest/test
-        filters:
-          branches:
-            only:
-              - main
+    # - deploy_preview:
+    #     requires:
+    #       - cypress/run
+    #       - jest/test
+    #     filters:
+    #       branches:
+    #         ignore:
+    #           - main
+    # - deploy_production:
+    #     requires:
+    #       - cypress/run
+    #       - jest/test
+    #     filters:
+    #       branches:
+    #         only:
+    #           - main
 
 jobs:
-  deploy_preview:
+  deploy:
     docker:
       - image: cimg/deploy:2022.08
     steps:
-      - run: npm install --global vercel
-          vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-          vercel build --token=$VERCEL_TOKEN
-          vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+      - run:
+          name: deploy
+          command: |
+            if [ $CIRCLE_BRANCH == "main" ]; then
+            npm install --global vercel \
+            vercel pull --yes --environment=production --token=$VERCEL_TOKEN \
+            vercel build --prod --token=$VERCEL_TOKEN \
+            vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN \
 
-  deploy_production:
-    docker:
-      - image: cimg/deploy:2022.08
-    steps:
-      - run: npm install --global vercel
-          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-          vercel build --prod --token=$VERCEL_TOKEN
-          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+            else
+            npm install --global vercel \
+            vercel pull --yes --environment=preview --token=$VERCEL_TOKEN \
+            vercel build --token=$VERCEL_TOKEN \
+            vercel deploy --prebuilt  --token=$VERCEL_TOKEN \
