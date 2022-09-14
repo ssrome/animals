@@ -14,9 +14,9 @@ workflows:
         wait-on: "http://localhost:3000"
     - jest/test
     - deploy:
-        requires:
-          - cypress/run
-          - jest/test
+        # requires:
+        #   - cypress/run
+        #   - jest/test
     # - deploy_preview:
     #     requires:
     #       - cypress/run
