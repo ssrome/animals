@@ -41,7 +41,7 @@ jobs:
           vercel deploy --prebuilt  --token=$VERCEL_TOKEN
 
   deploy_production:
-   docker:
+    docker:
       - image: cimg/deploy:2022.08
     steps:
       - run: npm install --global vercel
