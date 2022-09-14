@@ -6,40 +6,46 @@ orbs:
   jest: blimmer/jest@1.1.0
 
 workflows:
-  build:
-    jobs:
+  version: 2
+  jobs:
+    - build-and-test
+    - deploy_preview:
+        requires:
+          - build-and-test
+        filters:
+          branches:
+            ignore:
+              - main
+    - deploy_production:
+        requires:
+          - build-and-test
+        filters:
+          branches:
+            only:
+              - main
+
+jobs:
+  build-and-test:
+    cypress:
       - cypress/run:
           build: npm run build
           start: npm run start
           wait-on: "http://localhost:3000"
+    jest:
       - jest/test
 
   deploy_preview:
-    name: deploy
-    filters:
-      branches:
-        ignore:
-          - main
-    requires:
-      - cypress/run
-      - jest/test
-    jobs:
-      - npm install --global vercel
-      - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-      - vercel build --token=$VERCEL_TOKEN
-      - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+    deploy:
+      steps:
+        - run: npm install --global vercel
+            vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+            vercel build --token=$VERCEL_TOKEN
+            vercel deploy --prebuilt  --token=$VERCEL_TOKEN
 
   deploy_production:
-    name: deploy
-    filters:
-      branches:
-        only:
-          - main
-    requires:
-      - cypress/run
-      - jest/test
-    jobs:
-      - npm install --global vercel
-      - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-      - vercel build --prod --token=$VERCEL_TOKEN
-      - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+    deploy:
+      steps:
+        - run: npm install --global vercel
+            vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+            vercel build --prod --token=$VERCEL_TOKEN
+            vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
