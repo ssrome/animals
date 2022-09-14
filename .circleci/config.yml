@@ -39,9 +39,11 @@ workflows:
 jobs:
   deploy:
     docker:
-      - image: cimg/deploy:2022.08
+      - image: cimg/node:18.8.0
     steps:
       - checkout
+      - run: node --version
+      - run: npm install
       - run:
           name: deploy to Vercel
           command: |
