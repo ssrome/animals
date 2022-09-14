@@ -11,14 +11,14 @@ workflows:
     jobs:
       - jest/test
       - cypress/run:
-          requires: 
+          requires:
             - jest/test
           build: npm run build
           start: npm run start
           wait-on: "http://localhost:3000"
-      - deploy
-        requires:
-          - cypress/run
+      - deploy:
+          requires:
+            - cypress/run
     # - deploy_preview:
     #     requires:
     #       - cypress/run
