@@ -8,32 +8,29 @@ orbs:
 workflows:
   version: 2
   jobs:
-    - build-and-test
+    - cypress/run:
+        build: npm run build
+        start: npm run start
+        wait-on: "http://localhost:3000"
+    - jest/test
     - deploy_preview:
         requires:
-          - build-and-test
+          - cypress/run
+          - jest/test
         filters:
           branches:
             ignore:
               - main
     - deploy_production:
         requires:
-          - build-and-test
+          - cypress/run
+          - jest/test
         filters:
           branches:
             only:
               - main
 
 jobs:
-  build-and-test:
-    cypress:
-      - cypress/run:
-          build: npm run build
-          start: npm run start
-          wait-on: "http://localhost:3000"
-    jest:
-      - jest/test
-
   deploy_preview:
     deploy:
       steps:
