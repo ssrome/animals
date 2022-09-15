@@ -4,6 +4,7 @@ orbs:
   node: circleci/node@5.0.2
   cypress: cypress-io/cypress@1
   jest: blimmer/jest@1.1.0
+  vercel-orb: i-am-jeetu/vercel-orb@1.0.0
 
 workflows:
   version: 2
@@ -38,25 +39,40 @@ workflows:
 
 jobs:
   deploy:
-    docker:
-      - image: cimg/node:18.8.0
+    executor: vercel/default
     steps:
       - checkout
-      - run: node --version
-      - run: npm install
-      - run:
-          name: deploy to Vercel
-          command: |
-            if [ $CIRCLE_BRANCH == "main" ]; then
-            npm install --global vercel
-            vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-            vercel build --prod --token=$VERCEL_TOKEN
-            vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+      - vercel/install
+      - vercel/check-authentication
+      - vercel/deploy
+  # deploy:
+  #   docker:
+  #     - image: cimg/node:18.8.0
+  #   steps:
+  #     - checkout
+  #     - run: node --version
+  # - run:
+  #     name: Clone repo
+  #     command: |
+  #       if [ $CIRCLE_REPOSITORY_URL != "" ]; then
+  #         mkdir ~/cfn-tmp
+  #         git clone $CIRCLE_REPOSITORY_URL -b $CIRCLE_BRANCH ~/cfn-tmp
+  #       fi
 
-            else
-            npm install --global vercel
-            vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-            vercel build --token=$VERCEL_TOKEN
-            vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+  # - run: npm install
+  # - run:
+  #     name: deploy to Vercel
+  #     command: |
+  #       if [ $CIRCLE_BRANCH == "main" ]; then
+  #       npm install --global vercel
+  #       vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+  #       vercel build --prod --token=$VERCEL_TOKEN
+  #       vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
 
-            fi
+  #       else
+  #       npm install --global vercel
+  #       vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+  #       vercel build --token=$VERCEL_TOKEN
+  #       vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+
+  #       fi
