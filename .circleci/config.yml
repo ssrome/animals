@@ -19,22 +19,6 @@ workflows:
       - deploy:
           requires:
             - cypress/run
-    # - deploy_preview:
-    #     requires:
-    #       - cypress/run
-    #       - jest/test
-    #     filters:
-    #       branches:
-    #         ignore:
-    #           - main
-    # - deploy_production:
-    #     requires:
-    #       - cypress/run
-    #       - jest/test
-    #     filters:
-    #       branches:
-    #         only:
-    #           - main
 
 jobs:
   deploy:
@@ -42,18 +26,14 @@ jobs:
       - image: cimg/node:18.8.0
     steps:
       - checkout
-      - run: node --version
-      # - run:
-      #     name: Clone repo
-      #     command: |
-      #       if [ $CIRCLE_REPOSITORY_URL != "" ]; then
-      #         mkdir ~/cfn-tmp
-      #         git clone $CIRCLE_REPOSITORY_URL -b $CIRCLE_BRANCH ~/cfn-tmp
-      #       fi
-
-      - run: npm install
       - run:
-          name: deploy to Vercel
+          name: Check Node version
+          command: node --version
+      - run:
+          name: Install npm
+          command: npm install
+      - run:
+          name: Deploy to Vercel
           command: |
             if [ $CIRCLE_BRANCH == "main" ]; then
             sudo npm install --global vercel
