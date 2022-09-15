@@ -4,7 +4,6 @@ orbs:
   node: circleci/node@5.0.2
   cypress: cypress-io/cypress@1
   jest: blimmer/jest@1.1.0
-  vercel: i-am-jeetu/vercel@1.0.0
 
 workflows:
   version: 2
@@ -39,18 +38,11 @@ workflows:
 
 jobs:
   deploy:
-    executor: vercel/default
+    docker:
+      - image: cimg/node:18.8.0
     steps:
       - checkout
-      - vercel/install
-      - vercel/check-authentication
-      - vercel/deploy
-  # deploy:
-  #   docker:
-  #     - image: cimg/node:18.8.0
-  #   steps:
-  #     - checkout
-  #     - run: node --version
+      - run: node --version
   # - run:
   #     name: Clone repo
   #     command: |
@@ -59,20 +51,20 @@ jobs:
   #         git clone $CIRCLE_REPOSITORY_URL -b $CIRCLE_BRANCH ~/cfn-tmp
   #       fi
 
-  # - run: npm install
-  # - run:
-  #     name: deploy to Vercel
-  #     command: |
-  #       if [ $CIRCLE_BRANCH == "main" ]; then
-  #       npm install --global vercel
-  #       vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-  #       vercel build --prod --token=$VERCEL_TOKEN
-  #       vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+  - run: npm install
+  - run:
+      name: deploy to Vercel
+      command: |
+        if [ $CIRCLE_BRANCH == "main" ]; then
+        sudo npm install --global vercel
+        vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+        vercel build --prod --token=$VERCEL_TOKEN
+        vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
 
-  #       else
-  #       npm install --global vercel
-  #       vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-  #       vercel build --token=$VERCEL_TOKEN
-  #       vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+        else
+        sudo npm install --global vercel
+        vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+        vercel build --token=$VERCEL_TOKEN
+        vercel deploy --prebuilt  --token=$VERCEL_TOKEN
 
-  #       fi
+        fi
