@@ -12,6 +12,7 @@ module.exports = defineConfig({
   fixturesFolder: "__tests__/fixtures",
   screenshotsFolder: "__tests__/screenshots",
   screenshotOnRunFailure: false,
+  video: false,
   videosFolder: "__tests__/videos",
   watchForFileChanges: true,
 });
