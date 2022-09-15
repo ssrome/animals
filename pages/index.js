@@ -1,5 +1,9 @@
 function HomePage() {
-  return <div>Random Animals</div>;
+  return (
+    <>
+      <h1>Random Animals </h1>
+    </>
+  );
 }
 
 export default HomePage;
