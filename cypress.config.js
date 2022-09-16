@@ -1,17 +1,18 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  downloadsFolder: "tests/downloads",
+  downloadsFolder: "__tests__/downloads",
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    specPattern: "tests/e2e/**/*.cy.{js,jsx,ts,tsx}",
-    supportFile: "tests/support/e2e.{js,jsx,ts,tsx}",
+    specPattern: "__tests__/e2e/**/*.cy.{js,jsx,ts,tsx}",
+    supportFile: "__tests__/support/e2e.{js,jsx,ts,tsx}",
   },
-  fixturesFolder: "tests/fixtures",
-  screenshotsFolder: "tests/screenshots",
+  fixturesFolder: "__tests__/fixtures",
+  screenshotsFolder: "__tests__/screenshots",
   screenshotOnRunFailure: false,
-  videosFolder: "tests/videos",
+  video: false,
+  videosFolder: "__tests__/videos",
   watchForFileChanges: true,
 });
