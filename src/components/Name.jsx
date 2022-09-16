@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Name({ name }) {
-  return <div>Name: {name}</div>;
+  return <h2>{name}</h2>;
 }
