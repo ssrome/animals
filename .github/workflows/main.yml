@@ -16,9 +16,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Jest
-        uses: stefanoeb/jest-action@1.0.3
-        with:
-          command: npm run test:unit
+        run: npm run test:unit
 
   e2e-tests:
     runs-on: ubuntu-latest
