@@ -1,4 +1,4 @@
-name: Tests
+name: Deploy
 
 on: [push]
 
@@ -16,4 +16,16 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Jest
-        run: npm run test:unit
+        uses: stefanoeb/jest-action@1.0.3
+        # run: npm run test:unit
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run Cypress
+        uses: cypress-io/github-action@v4
