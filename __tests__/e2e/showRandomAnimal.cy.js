@@ -1,4 +1,4 @@
-describe("Random animal page", () => {
+describe("Show initial random animal", () => {
   beforeEach(() => {
     cy.visit("/");
   });
