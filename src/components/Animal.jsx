@@ -16,7 +16,7 @@ export default function Animal({ animal }) {
         />
       </div>
       <div className={styles.infoContainer}>
-        <ul className={styles.info}>
+        <ul className={styles.info} data-cy="animal-info-list">
           <li>Type: {animal.animal_type}</li>
           <li>Lifespan: {animal.lifespan}</li>
           <li>Location: {animal.geo_range}</li>
