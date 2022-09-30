@@ -1,27 +1,50 @@
-describe("Show initial random animal", () => {
+describe("Show a random animal", () => {
   beforeEach(() => {
     cy.visit("/");
   });
 
-  it("loads the correct title", () => {
+  it("loads the correct title and button", () => {
     cy.get('[data-cy="heading-h1"]').contains("Random Animals");
     cy.title().should("eq", "Random Animals");
+    cy.get('[data-cy="random-button"]').should("have.text", "Random");
   });
 
-  it("shows an animal names", () => {
-    cy.get('[data-cy="heading-h2"]').should("exist");
-    cy.get('[data-cy="heading-h3"]').should("exist");
-  });
-
-  it("shows animal information", () => {
+  it("shows an animal when the button is clicked", () => {
+    cy.get('[data-cy="random-button"]').click();
+    cy.get('[data-cy="heading-h2"]').invoke("text").as("animalName");
+    cy.get('[data-cy="heading-h3"]').invoke("text").as("animalLatinName");
     cy.get('[data-cy="animal-info-list"] li').should("have.length", 5);
   });
 
-  it("shows a different animal when the page is reloaded", () => {
-    const animalName1 = cy.get('[data-cy="heading-h2"]');
-    const animalLatinName1 = cy.get('[data-cy="heading-h3"]');
-    cy.reload();
-    cy.get('[data-cy="heading-h2"]').should("not.have.value", animalName1);
-    cy.get('[data-cy="heading-h3"]').should("not.have.value", animalLatinName1);
+  it("shows a different animal when the button is clicked", () => {
+    cy.get('[data-cy="random-button"]').click();
+    cy.get('[data-cy="heading-h2"]').invoke("text").as("animalName");
+    cy.get('[data-cy="heading-h3"]').invoke("text").as("animalLatinName");
+    cy.get('[data-cy="animal-info-list"] li').should("have.length", 5);
+    cy.get('[data-cy="random-button"]').click();
+    cy.get("@animalName").then((animalName) => {
+      cy.get('[data-cy="heading-h2"]').should("not.have.text", animalName);
+    });
+    cy.get("@animalLatinName").then((animalLatinName) => {
+      cy.get('[data-cy="heading-h3"]').should("not.have.text", animalLatinName);
+    });
+    cy.get('[data-cy="animal-info-list"] li').should("have.length", 5);
+  });
+
+  it("shows a different animal when enter is pressed on keyboard", () => {
+    cy.get('[data-cy="random-button"]').focus().type("{enter}");
+    cy.get('[data-cy="heading-h2"]').invoke("text").as("animalName");
+    cy.get('[data-cy="heading-h3"]').invoke("text").as("animalLatinName");
+    cy.get('[data-cy="animal-info-list"] li').should("have.length", 5);
+
+    cy.get('[data-cy="random-button"]').focused().type("{enter}");
+
+    cy.get("@animalName").then((animalName) => {
+      cy.get('[data-cy="heading-h2"]').should("not.have.text", animalName);
+    });
+    cy.get("@animalLatinName").then((animalLatinName) => {
+      cy.get('[data-cy="heading-h3"]').should("not.have.text", animalLatinName);
+    });
+    cy.get('[data-cy="animal-info-list"] li').should("have.length", 5);
   });
 });

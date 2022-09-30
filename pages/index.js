@@ -1,25 +1,15 @@
 import Head from "next/head";
+import AnimalContainer from "../src/components/AnimalContainer";
 import Heading from "../src/components/Heading";
-import Animal from "../src/components/Animal";
-import getRandomAnimal from "../utils/getAnimals";
 
-export async function getServerSideProps() {
-  const randomAnimal = await getRandomAnimal();
-  return {
-    props: {
-      randomAnimal,
-    },
-  };
-}
-
-export default function HomePage({ randomAnimal }) {
+export default function HomePage() {
   return (
     <>
       <Head>
         <title>Random Animals</title>
       </Head>
       <Heading />
-      <Animal animal={randomAnimal} />
+      <AnimalContainer />
     </>
   );
 }
