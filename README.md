@@ -1,3 +1,5 @@
+[![CI/CD Production](https://github.com/ssrome/animals/actions/workflows/production.yml/badge.svg)](https://github.com/ssrome/animals/actions/workflows/production.yml)
+
 # Animals
 
 ## Prerequisites
