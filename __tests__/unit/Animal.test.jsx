@@ -20,11 +20,11 @@ let animal = {
   id: 137,
 };
 
-beforeEach(() => {
-  render(<Animal animal={animal} />);
-});
+describe("Animal component with animal sent", () => {
+  beforeEach(() => {
+    render(<Animal animal={animal} />);
+  });
 
-describe("Animal component", () => {
   it("shows the name of the animal", async () => {
     const nameText = screen.getByText(/plains zebra/i);
 
@@ -32,7 +32,7 @@ describe("Animal component", () => {
   });
 
   it("shows the alt text of a picture of the animal", async () => {
-    const imageAltText = screen.getByAltText(/picture of a plains zebra/i);
+    const imageAltText = screen.getByAltText(/plains zebra/i);
 
     expect(imageAltText).toBeInTheDocument();
   });
@@ -64,5 +64,19 @@ describe("Animal component", () => {
     const locationText = screen.getByText(/eastern and southern africa/i);
 
     expect(locationText).toBeInTheDocument();
+  });
+});
+
+describe("Animal component with no animal sent", () => {
+  it("doesn't show name", () => {
+    render(<Animal />);
+    const name = screen.queryByRole("heading {level: 2}");
+    expect(name).not.toBeInTheDocument();
+  });
+
+  it("doesn't show latin name", () => {
+    render(<Animal />);
+    const latinName = screen.queryByRole("heading {level: 3}");
+    expect(latinName).not.toBeInTheDocument();
   });
 });
