@@ -18,3 +18,17 @@ describe("Name component", () => {
     expect(latinText).toBeInTheDocument();
   });
 });
+
+describe("Name component with nothing sent", () => {
+  it("doesn't show name", () => {
+    render(<Name />);
+    const name = screen.queryByRole("heading {level: 2}");
+    expect(name).not.toBeInTheDocument();
+  });
+
+  it("doesn't show latin name", () => {
+    render(<Name />);
+    const latinName = screen.queryByRole("heading {level: 3}");
+    expect(latinName).not.toBeInTheDocument();
+  });
+});
