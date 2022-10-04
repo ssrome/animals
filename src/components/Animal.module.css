@@ -1,20 +1,37 @@
-.animalImg {
-  border: 3px solid #000000;
-  border-radius: 15px;
+.imgContainer {
+  height: auto;
+  margin: 15px auto;
+  position: relative;
+  width: 30%;
 }
 
-.imgContainer {
+.imgContainer > div {
+  position: unset !important;
+}
+
+.animalImg {
+  background-image: url("/images/placeholder.png");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  border: 3px solid #000000;
+  border-radius: 15px;
+  height: 50% !important;
+  object-fit: contain;
   margin: 15px auto;
+  position: relative !important;
   text-align: center;
+  width: 100% !important;
 }
 
 .infoContainer {
-  margin: 15px auto;
-  width: 300px;
+  margin: 20px auto 0;
+  width: 80%;
 }
 
 .info {
   list-style-type: none;
   padding: 0;
   text-align: left;
+  position: relative;
 }
