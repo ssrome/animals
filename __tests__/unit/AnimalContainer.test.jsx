@@ -1,7 +1,9 @@
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import AnimalContainer from "../../src/components/AnimalContainer";
-import Animal from "../../src/components/Animal";
+import getRandomAnimal from "../../utils/getAnimals";
+
+jest.mock("../../utils/getAnimals");
 
 describe("Container", () => {
   it("shows the random button", () => {
@@ -28,31 +30,20 @@ describe("Container", () => {
         "https://upload.wikimedia.org/wikipedia/commons/f/fb/Blue_Wildebeest%2C_Ngorongoro.jpg",
       id: 187,
     };
+
+    getRandomAnimal.mockResolvedValue(animal);
+
     render(<AnimalContainer />);
 
     const randomButton = screen.getByRole("button");
-    waitFor(async () => {
-      fireEvent.click(randomButton);
-      render(<Animal animal={animal} />);
-    });
+    fireEvent.click(randomButton);
 
-    const animalName = screen.getByRole("heading", {
-      level: 2,
+    await waitFor(() => {
+      const animalName = screen.getByRole("heading", {
+        level: 2,
+      });
+      expect(animalName).toBeInTheDocument();
+      expect(animalName).toHaveTextContent(/White-bearded Wildebeest/i);
     });
-    expect(animalName).toBeInTheDocument();
-    expect(animalName).toHaveTextContent(/White-bearded Wildebeest/i);
-
-    const animalLatinName = screen.getByRole("heading", {
-      level: 3,
-    });
-    expect(animalLatinName).toBeInTheDocument();
-    expect(animalLatinName).toHaveTextContent(/Connochaetes taurinus/i);
-
-    const animalListItem = screen.queryAllByRole("listitem");
-    expect(animalListItem[0]).toHaveTextContent(/mammal/i);
-    expect(animalListItem[1]).toHaveTextContent(/10/i);
-    expect(animalListItem[2]).toHaveTextContent(/Eastern and Southern Africa/i);
-    expect(animalListItem[3]).toHaveTextContent(/Savannah and open woodland/i);
-    expect(animalListItem[4]).toHaveTextContent(/Grass/i);
   });
 });
