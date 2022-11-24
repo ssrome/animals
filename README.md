@@ -2,6 +2,18 @@
 
 # Animals
 
+## Technologies used
+
+- Next.js
+- Jest
+- React Testing Library
+- Cypress
+
+## Deployed using
+
+- GitHub Actions
+- Vercel
+
 ## Prerequisites
 
 - [NodeJS](https://nodejs.org/en/)
@@ -11,26 +23,26 @@
 
 1. Clone the repo
 
-   `git clone https://github.com/ssrome/animals.git`
+   ```git clone https://github.com/ssrome/animals.git```
 
 2. Install packages into the `animal` directory
 
-   `npm install`
+   ```npm install```
 
 ## Run application
 
 ### Run locally
 
-`npm run dev`
+```npm run dev```
 
-Then go to `http://localhost:3000`
+Then go to [http://localhost:3000](http://localhost:3000)
 
 ### Run Tests
 
-Unit
+To run unit tests using Jest and React Testing Library
 
-`npm run test:unit`
+```npm run test:unit```
 
-e2e
+To run the end to end tests using Cypress
 
-`npm run test:e2e`
+```npm run test:e2e```
