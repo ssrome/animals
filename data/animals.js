@@ -1,0 +1,73 @@
+export const animals = [
+        {
+        name: "Plains Zebra",
+        latin_name: "Equus quagga",
+        animal_type: "Mammal",
+        active_time: "Diurnal",
+        length_min: "7",
+        length_max: "8",
+        weight_min: "385",
+        weight_max: "850",
+        lifespan: "15",
+        habitat: "Savannah and woodland",
+        diet: "Grass",
+        geo_range: "Eastern and Southern Africa",
+        image_link:
+          "https://upload.wikimedia.org/wikipedia/commons/4/45/Equus_quagga_burchellii_-_Etosha%2C_2014.jpg",
+        id: 1,
+      }, {
+        name: "White-bearded Wildebeest",
+        latin_name: "Connochaetes taurinus",
+        animal_type: "Mammal",
+        active_time: "Diurnal",
+        length_min: "5",
+        length_max: "8",
+        weight_min: "350",
+        weight_max: "500",
+        lifespan: "10",
+        habitat: "Savannah and open woodland",
+        diet: "Grass",
+        geo_range: "Eastern and Southern Africa",
+        image_link:
+          "https://upload.wikimedia.org/wikipedia/commons/f/fb/Blue_Wildebeest%2C_Ngorongoro.jpg",
+        id: 2,
+      },
+      {
+        active_time:"Nocturnal",
+        animal_type: "Mammal",
+        diet: "Primarily bamboo shoots and leaves; some roots, fruit, grasses, acorns, lichens, small animals",
+        geo_range: "South to Southeast Asia",
+        habitat: "Mountain forest",
+        id: 3,
+        image_link:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Red_Panda_%2824986761703%29.jpg/320px-Red_Panda_%2824986761703%29.jpg",
+        latin_name: "Ailurus fulgens",
+        length_max: "2",
+        length_min: "1.5",
+        lifespan: "10",
+        name: "Red Panda",
+        weight_max:"14",
+        weight_min: "6.5"
+        },
+        {
+        name: "Beaver",
+        latin_name: "Castor",
+        animal_type: "Mammal",
+        lifespan: "10 - 12",
+        geo_range: "Europe and North America",
+        habitat: "Freshwater",
+        diet: "Tree bark, aquatic plants and grass",
+        image_link: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/239px-American_Beaver.jpg",
+        id: 4
+        },
+        // {
+        // name: "",
+        // latin_name: "",
+        // animal_type: "",
+        // lifespan: "",
+        // geo_range: "",
+        // habitat: "",
+        // diet: "",
+        // image_link: "",
+        // id: 1
+        // }
+      ]
