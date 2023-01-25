@@ -1,4 +1,4 @@
-[![CI/CD Production](https://github.com/ssrome/animals/actions/workflows/production.yml/badge.svg)](https://github.com/ssrome/animals/actions/workflows/production.yml)
+[![CI/CD](https://github.com/ssrome/animals/actions/workflows/deploy-to-vercel.yaml/badge.svg?branch=main)](https://github.com/ssrome/animals/actions/workflows/deploy-to-vercel.yaml)
 
 # Animals
 
