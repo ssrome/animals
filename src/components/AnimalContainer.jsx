@@ -3,7 +3,6 @@ import getRandomAnimal from "../../utils/getAnimals";
 import Animal from "./Animal";
 
 export default function AnimalContainer() {
-  //const [showAnimal, setShowAnimal] = useState(null);
   const [animal, setAnimal] = useState(null);
 
   async function handleClickAndEnter(event) {
