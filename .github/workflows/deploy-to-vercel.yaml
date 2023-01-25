@@ -7,7 +7,7 @@ env:
 on: push
 
 jobs:
-  Call Tests Workflow:
+  Call-Tests-Workflow:
     name: tests-workflow
     uses: ./.github/workflows/tests.yaml
 
