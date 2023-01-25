@@ -1,4 +1,5 @@
-import {animals} from "../../data/animals"
+import {animals} from "../../data/animals";
+
 export default function handleAnimals(req, res){
 
     let randomIndex = Math.floor(Math.random() * animals.length)
