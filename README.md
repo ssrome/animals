@@ -56,3 +56,17 @@ To run the end to end tests using [Cypress](https://www.cypress.io/)
 ```
 npm run test:e2e
 ```
+
+
+## Docker
+
+### Run in the backgroud
+```
+docker-compose up -d
+```
+
+### Stop it running
+
+```
+docker-compose stop
+```
