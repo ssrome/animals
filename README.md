@@ -60,6 +60,11 @@ npm run test:e2e
 
 ## Docker
 
+### Build from docker file
+```
+docker-compose up --build
+```
+
 ### Run in the backgroud
 ```
 docker-compose up -d
