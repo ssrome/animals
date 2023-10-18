@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/future/image";
+import Image from "next/image";
 import Name from "./Name";
 import styles from "./Animal.module.css";
 
@@ -22,9 +22,8 @@ export default function Animal({ animal }) {
           priority
           placeholder="blur"
           blurDataURL="/images/placeholder.png"
-          sizes="(max-width: 425px) 100vw,
-              (max-width: 375px) 50vw,
-              33vw"
+          width={425}
+          height={500}
         />
       );
     };
