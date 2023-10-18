@@ -29,7 +29,7 @@
     "start-server-and-test": "^1.14.0"
   },
   "dependencies": {
-    "next": "^12.3.0",
+    "next": "^13.5.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
