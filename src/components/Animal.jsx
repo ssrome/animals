@@ -17,7 +17,6 @@ export default function Animal({ animal }) {
           loader={animalImageLoader}
           src={animal.image_link}
           alt={animal.name}
-          fill
           className={styles.animalImg}
           priority
           placeholder="blur"
