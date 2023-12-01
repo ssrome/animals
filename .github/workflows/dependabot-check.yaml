@@ -1,9 +1,10 @@
 name: Dependabot Check
 
 on:
-  pull_request:
+  push:
     branches:
       - "dependabot/**"
+      - "fix/**"
 
 jobs:
   Call-Tests-Workflow:
